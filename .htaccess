@@ -15,7 +15,7 @@ RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
 
 RewriteCond %{HTTPS} off [OR]
 RewriteCond %{HTTP:X-Forwarded-Proto} !https
-RewriteRule ^(.*)$ https://loveamis.github.io/music/$1 [R=301,L]
+RewriteRule ^(.*)$ https://amislove.work.gd/$1 [R=301,L]
 
 # Redirigir todas las URLs inexistentes a index.html
 RewriteCond %{REQUEST_FILENAME} !-f
