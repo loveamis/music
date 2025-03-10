@@ -1,0 +1,25 @@
+# Desactivar la visualización de errores de PHP
+php_value display_errors Off
+php_value mbstring.http_input auto
+php_value date.timezone Europe/Luxembourg
+
+# Manejar errores 404 redirigiéndolos a index.html
+ErrorDocument 404 /index.html
+
+# Habilitar mod_rewrite
+RewriteEngine On
+
+# Redirigir todo el tráfico HTTP a HTTPS y forzar www
+RewriteCond %{HTTP_HOST} !^www\. [NC]
+RewriteRule ^(.*)$ https://www.%{HTTP_HOST}/$1 [R=301,L]
+
+RewriteCond %{HTTPS} off [OR]
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
+RewriteRule ^(.*)$ https://www.amis.lovestoblog.com/$1 [R=301,L]
+
+# Redirigir todas las URLs inexistentes a index.html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /index.html [L]
+
+
