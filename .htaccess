@@ -4,7 +4,7 @@ php_value mbstring.http_input auto
 php_value date.timezone Europe/Luxembourg
 
 # Manejar errores 404 redirigiéndolos a index.html
-ErrorDocument 404 /index.html
+ErrorDocument 404 https://amislove.work.gd/index.html
 
 # Habilitar mod_rewrite
 RewriteEngine On
