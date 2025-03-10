@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Jardín de Amis</title>
+  <link rel="icon" href="image/favicon.png" type="image/png">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #f2e6ff, #e6f7ff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Fondo estrellado */
+    .estrella {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: parpadeo 3s infinite ease-in-out;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    /* Corazón radiante */
+    .corazon {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle, #ffffff, #ffd700);
+      clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 75%, 20% 100%, 0% 35%);
+      box-shadow: 0 0 30px #ffd700;
+      animation: latir 1.5s infinite ease-in-out;
+    }
+
+    @keyframes latir {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    /* Mensaje */
+    .mensaje {
+      position: absolute;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 26px;
+      color: #fff;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.2);
+      padding: 15px 25px;
+      border-radius: 15px;
+      animation: aparecer 3s ease-in-out;
+      transition: color 0.3s ease-in-out;
+      text-align: center;
+    }
+
+    .mensaje:hover {
+      color: #ffd700;
+    }
+
+    @keyframes aparecer {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Corazón radiante -->
+  <div class="corazon"></div>
+
+  <!-- Mensaje -->
+  <div class="mensaje">Bienvenido al Jardín de Amis 🌸✨, un rincón donde florecen los sueños y el alma encuentra calma.</div>
+
+  <!-- Estrellas dinámicas -->
+  <script>
+    const body = document.body;
+    for (let i = 0; i < 50; i++) {
+      const estrella = document.createElement('div');
+      estrella.classList.add('estrella');
+      estrella.style.top = `${Math.random() * 100}%`;
+      estrella.style.left = `${Math.random() * 100}%`;
+      estrella.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      body.appendChild(estrella);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>El Jardín de Amis</title>
+  <link rel="icon" href="image/favicon.png" type="image/png">
+
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom, #f2e6ff, #e6f7ff);
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      position: relative;
+      font-family: 'Georgia', serif;
+      overflow: hidden;
+      flex-direction: column;
+    }
+
+    /* Fondo dinámico */
+    .estrella {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: parpadeo 3s infinite ease-in-out;
+    }
+
+    @keyframes parpadeo {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    .estrella-fugaz {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: cruzar 5s ease-in-out infinite;
+    }
+
+    @keyframes cruzar {
+      0% {
+        opacity: 0;
+        transform: translate(-200px, -200px);
+      }
+      50% {
+        opacity: 1;
+        transform: translate(200px, 200px);
+      }
+      100% {
+        opacity: 0;
+        transform: translate(400px, 400px);
+      }
+    }
+
+    /* Luna animada */
+    .luna {
+      position: absolute;
+      top: 10%;
+      left: 80%;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, #fdfbd3, #f5c431);
+      border-radius: 50%;
+      box-shadow: 0 0 20px #f5c431;
+      animation: brillo 4s infinite ease-in-out;
+    }
+
+    @keyframes brillo {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* Corazón animado */
+    .corazon {
+      position: relative;
+      margin: 10px auto;
+      width: 100px;
+      height: 100px;
+      background: radial-gradient(circle, #ffcccc, #ff6666);
+      clip-path: polygon(50% 0%, 100% 35%, 80% 100%, 50% 75%, 20% 100%, 0% 35%);
+      box-shadow: 0 0 20px #ff6666;
+      animation: latir 1.5s infinite ease-in-out;
+    }
+
+    @keyframes latir {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    /* Zona de reunión */
+    .zona-reunion {
+      position: absolute;
+      bottom: 25%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 300px;
+      background: rgba(255, 229, 204, 0.8);
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255, 140, 0, 0.7);
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .zona-reunion p {
+      font-size: 18px;
+      color: #804000;
+      margin: 10px 0;
+      width: 100%;
+      text-align: center;
+    }
+
+    .taza-chocolate {
+      position: relative;
+      width: 50px;
+      height: 60px;
+      background: linear-gradient(to bottom, #d2691e, #8b4513);
+      border-radius: 10px 10px 0 0;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .taza-chocolate::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 10px;
+      background: rgba(255, 229, 204, 0.8);
+      border-radius: 50%;
+    }
+
+    .taza-chocolate::after {
+      content: '';
+      position: absolute;
+      top: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 40px;
+      height: 20px;
+      background: rgba(255, 165, 79, 0.9);
+      border-radius: 50%;
+    }
+
+    .manta {
+      position: relative;
+      width: 80px;
+      height: 50px;
+      background: linear-gradient(45deg, #ffd1dc, #ffc0cb);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(255, 105, 180, 0.7);
+    }
+
+    .cojin {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle, #ffff99, #ffcc00);
+      border-radius: 50%;
+      box-shadow: 0 0 5px rgba(255, 204, 0, 0.7);
+    }
+
+    .luces {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .luces .luz {
+      width: 10px;
+      height: 10px;
+      background: radial-gradient(circle, #fff700, #ffc700);
+      border-radius: 50%;
+      animation: parpadeo 2s infinite ease-in-out;
+    }
+
+    /* Lago */
+    .lago {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 150px;
+      background: radial-gradient(circle, #9ccfff, #4da6ff);
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0, 102, 255, 0.5);
+    }
+
+    .lago .nenufar {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      background: radial-gradient(circle, #ffccff, #e699ff);
+      border-radius: 50%;
+      animation: flotar 4s infinite ease-in-out;
+    }
+
+    @keyframes flotar {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    .lago .nenufar:nth-child(1) {
+      top: 30%;
+      left: 20%;
+    }
+
+    .lago .nenufar:nth-child(2) {
+      top: 50%;
+      left: 70%;
+    }
+
+    .lago .nenufar:nth-child(3) {
+      top: 10%;
+      left: 50%;
+    }
+
+    /* Mensaje */
+    .mensaje {
+      position: absolute;
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 24px;
+      color: #333;
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+      background: rgba(255, 255, 255, 0.7);
+      padding: 15px 25px;
+      border-radius: 15px;
+      animation: aparecer 3s ease-in-out;
+      transition: color 0.3s ease-in-out;
+      text-align: center;
+    }
+
+    .mensaje:hover {
+      color: #cc33ff;
+    }
+
+    .detalle-velada {
+      font-size: 18px;
+      color: #804000;
+      text-shadow: 0 0 5px rgba(255, 229, 204, 0.8);
+      background: rgba(255, 255, 255, 0.6);
+      padding: 10px 20px;
+      border-radius: 10px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    @keyframes aparecer {
+      0% { opacity: 0; transform: translateY(-20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <!-- Luna -->
+  <div class="luna"></div>
+
+  <!-- Luces colgantes -->
+  <div class="luces">
+    <div class="luz"></div>
+    <div class="luz"></div>
+    <div class="luz"></div>
+    <div class="luz"></div>
+    <div class="luz"></div>
+  </div>
+
+  <!-- Mensaje -->
+  <div class="mensaje">Bienvenido al Jardín de Amis 🌸✨, un rincón donde florecen los sueños y el alma encuentra calma.
+    <div class="corazon"></div>
+  </div>
+
+  <!-- Zona de reunión para pijamada -->
+  <div class="zona-reunion">
+    <p class="detalle-velada">Primera velada inolvidable: Risas, chocolate y estrellas 🌟</p>
+    <p>Zona de Pijamada 🌙✨</p>
+    <div class="taza-chocolate"></div>
+    <div class="manta"></div>
+    <div class="cojin"></div>
+    <div class="cojin"></div>
+  </div>
+
+  <!-- Lago con nenúfares -->
+  <div class="lago">
+    <div class="nenufar"></div>
+    <div class="nenufar"></div>
+    <div class="nenufar"></div>
+  </div>
+
+  <!-- Estrellas dinámicas -->
+  <script>
+    const body = document.body;
+
+    for (let i = 0; i < 50; i++) {
+      const estrella = document.createElement('div');
+      estrella.classList.add('estrella');
+      estrella.style.top = `${Math.random() * 100}%`;
+      estrella.style.left = `${Math.random() * 100}%`;
+      estrella.style.animationDuration = `${Math.random() * 3 + 2}s`;
+      body.appendChild(estrella);
+    }
+
+    for (let i = 0; i < 2; i++) {
+      const estrellaFugaz = document.createElement('div');
+      estrellaFugaz.classList.add('estrella-fugaz');
+      estrellaFugaz.style.top = `${Math.random() * 50}%`;
+      estrellaFugaz.style.left = `${Math.random() * 50}%`;
+      body.appendChild(estrellaFugaz);
+    }
+  </script>
+</body>
+</html>
