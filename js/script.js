@@ -196,33 +196,7 @@
         }
     });
 
-    //Popup elements
 
-
-    $('.popup-image').magnificPopup({
-        type: 'image',
-        fixedContentPos: false,
-        fixedBgPos: false,
-        mainClass: 'mfp-no-margins mfp-with-zoom',
-        image: {
-            verticalFit: true
-        },
-        zoom: {
-            enabled: true,
-            duration: 300
-        }
-    });
-
-
-    $('.popup-youtube, .popup-vimeo').magnificPopup({
-        disableOn: 700,
-        type: 'iframe',
-        mainClass: 'mfp-fade',
-        removalDelay: 160,
-        preloader: false,
-
-        fixedContentPos: false
-    });
 
 
 
